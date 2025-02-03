@@ -1,16 +1,13 @@
 <?php
 
-use app\controllers\ApiExampleController;
 use app\controllers\TransactionController;
 use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
-use flight\Engine;
-use flight\net\Router;
+use app\controllers\GestionAnimalController;
 
 $TransactionController = new TransactionController();
 
 $router->get('/', [ $TransactionController, 'nouvelleVente' ]); 
-
 
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();
@@ -28,7 +25,6 @@ $router->group('/alimentation', function() use ($router) {
 	$router->post('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 });
 
-
 $router->group('/GestiionElevage', function() use ($router) {
 	$GestionElevage_Controller = new GestionElevageController();
 	$router->get('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);
@@ -36,3 +32,12 @@ $router->group('/GestiionElevage', function() use ($router) {
 	$router->get('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 	$router->post('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 });
+
+$router->group('/animal', function() use ($router) {
+	$gestionAnimalController = new GestionAnimalController();
+	$router->get('/choix', [$gestionAnimalController, 'getFormulaireChoixanimal']);
+	$router->post('/nourrir', [$gestionAnimalController, 'nourrirAnimal']);
+	$router->get('/detail', [$gestionAnimalController, 'getAnimalSpec']);
+	$router->get('/ajout', [$gestionAnimalController, 'getFormAjoutAnimal']);
+});
+

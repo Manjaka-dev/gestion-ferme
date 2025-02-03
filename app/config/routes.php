@@ -23,6 +23,7 @@ $router->group('/alimentation', function() use ($router) {
 	$router->post('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 });
 
+
 $router->group('/GestiionElevage', function() use ($router) {
 	$GestionElevage_Controller = new GestionElevageController();
 	$router->get('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);

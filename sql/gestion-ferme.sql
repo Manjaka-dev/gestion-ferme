@@ -1,3 +1,6 @@
+CREATE DATABASE dbname;
+use dbname;
+
 CREATE TABLE alimentation (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nom VARCHAR(255) NOT NULL,

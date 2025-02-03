@@ -23,12 +23,10 @@ $router->group('/alimentation', function() use ($router) {
 	$router->post('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 });
 
-$router->group('/GestiionElevage', function() use ($router, $app) {
+$router->group('/GestiionElevage', function() use ($router) {
 	$GestionElevage_Controller = new GestionElevageController();
 	$router->get('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);
 	$router->post('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);
 	$router->get('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 	$router->post('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 });
-
-?>

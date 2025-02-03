@@ -1,6 +1,3 @@
-CREATE DATABASE dbname;
-use dbname;
-
 CREATE TABLE alimentation (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nom VARCHAR(255) NOT NULL,
@@ -10,6 +7,33 @@ CREATE TABLE alimentation (
 CREATE TABLE status (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nom VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE categorie_animal (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(255) NOT NULL,
+  poid_min DECIMAL(10,2),
+  poid_max DECIMAL(10,2),
+  taux_perte_poid INT,
+  prix_de_vente DECIMAL(10,2),
+  nb_jour_sans_manger INT
+);
+
+CREATE TABLE animal (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(255) NOT NULL,
+  id_categorie INT NOT NULL,
+  poid_de_base DECIMAL(10,2),
+  FOREIGN KEY (id_categorie) REFERENCES categorie_animal(id)
+);
+
+CREATE TABLE status_animal (
+  id_animal INT NOT NULL,
+  id_status INT NOT NULL,
+  date_status DATE,
+  PRIMARY KEY (id_animal, id_status),
+  FOREIGN KEY (id_animal) REFERENCES animal(id),
+  FOREIGN KEY (id_status) REFERENCES status(id)
 );
 
 CREATE TABLE categorie_alimentation (
@@ -43,13 +67,4 @@ CREATE TABLE transaction_animal (
   type TINYINT(1),
   date_transaction DATE,
   FOREIGN KEY (id_animal) REFERENCES animal(id)
-);
-
-CREATE TABLE status_animal (
-  id_animal INT NOT NULL,
-  id_status INT NOT NULL,
-  date_status DATE,
-  PRIMARY KEY (id_animal, id_status),
-  FOREIGN KEY (id_animal) REFERENCES animal(id),
-  FOREIGN KEY (id_status) REFERENCES status(id)
 );

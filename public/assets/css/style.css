@@ -1,6 +1,9 @@
 body 
 {
     background-color: rgb(241, 241, 241);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    width: 100vw;
 }
 
 .fixed-center
@@ -9,8 +12,6 @@ body
     top: 30vh;
     left: 30vw;
 }
-
-
 
 .container 
 {
@@ -34,10 +35,8 @@ body
 {
     border-radius: 5px;
 }
-
 .form 
 {
-    font-family: Arial, Helvetica, sans-serif;
     color: rgb(49, 49, 49);
     width: 50%;
     padding: 50px;
@@ -68,3 +67,157 @@ body
     padding: 10px 20px 10px 20px;
     cursor: pointer;
 }
+
+.navbar 
+{
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* resp */
+    width: 15vw;
+    padding: 20px;
+}
+
+.navs 
+{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+    font-weight:500;
+    color: rgb(121, 121, 121);
+}
+
+.navlink 
+{
+    margin-top: 5px;
+    border-radius: 10px;
+    padding: 10px 15px 15px 10px;
+}
+
+.navlink:hover 
+{
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+i 
+{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.content 
+{
+    margin-left: 18vw;
+    width: 80%;
+    /* background-color: white; */
+    border-radius: 20px;
+}
+
+.card 
+{
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+}
+
+.slot 
+{
+    width: 100%;
+    height: 70%;
+    /* position: relative; */
+    background-color: rgb(48, 48, 48);
+}
+
+.box 
+{
+    padding: 20px;
+}
+
+.box p 
+{
+    margin: 10px;
+}
+
+.flex 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.start
+{
+    justify-content:flex-start
+
+}
+
+.next-btn 
+{
+    background-color: rgb(218, 196, 73);
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.black 
+{
+    background-color: rgb(22, 22, 22);
+    color: white;
+}
+
+.wrap 
+{
+    flex-wrap: wrap;
+}
+
+.space-between 
+{
+    justify-content: space-between;
+}
+
+/* .prev-btn 
+{
+    position: fixed;
+    top: 50%;
+    left: 20vw;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.right-carousel-btn
+{
+    position: fixed;
+    top: 50%;
+    right: 5vw;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.left-carousel-btn
+{
+    position: fixed;
+    top: 50%;
+    left: 20vw;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;  
+    z-index: 1000; 
+} */
+
+
+

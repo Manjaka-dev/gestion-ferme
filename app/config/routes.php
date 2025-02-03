@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\ApiExampleController;
+use app\controllers\TransactionController;
 use flight\Engine;
 use flight\net\Router;
 
@@ -8,9 +9,13 @@ use flight\net\Router;
  * @var Router $router 
  * @var Engine $app
  */
-$router->get('/', function() use ($app) {
-	$app->render('welcome', [ 'message' => 'You are gonna do great things!' ]);
-});
+// $router->get('/', function() use ($app) {
+// 	$app->render('welcome', [ 'message' => 'You are gonna do great things!' ]);
+// });
+
+$TransactionController = new TransactionController();
+
+$router->get('/', [ $TransactionController, 'nouvelleVente' ]); 
 
 $router->get('/hello-world/@name', function($name) {
 	echo '<h1>Hello world! Oh hey '.$name.'!</h1>';

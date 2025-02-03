@@ -21,17 +21,17 @@ INSERT INTO categorie_alimentation (id_categorie_animal, id_alimentation) VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6);
 
 -- Insertion des animaux
-INSERT INTO animal (nom, id_categorie, poid_de_base) VALUES
-('Poulet 1', 1, 2.00),
-('Poulet 2', 1, 2.50),
-('Vache 1', 2, 300.00),
-('Mouton 1', 3, 40.00),
-('Mouton 2', 3, 45.00),
-('Chèvre 1', 4, 35.00),
-('Canard 1', 5, 3.00),
-('Canard 2', 5, 2.80),
-('Dinde 1', 6, 10.00),
-('Dinde 2', 6, 12.00);
+INSERT INTO animal (nom, id_categorie, poid_de_base, photo) VALUES
+('Poulet 1', 1, 2.00, 'poulet1.jpg'),
+('Poulet 2', 1, 2.50, 'poulet2.jpg'),
+('Vache 1', 2, 300.00, 'vache1.jpg'),
+('Mouton 1', 3, 40.00, 'mouton1.jpg'),
+('Mouton 2', 3, 45.00, 'mouton2.jpg'),
+('Chèvre 1', 4, 35.00, 'chevre1.jpg'),
+('Canard 1', 5, 3.00, 'canard1.jpg'),
+('Canard 2', 5, 2.80, 'canard2.jpg'),
+('Dinde 1', 6, 10.00, 'dinde1.jpg'),
+('Dinde 2', 6, 12.00, 'dinde2.jpg');
 
 -- Insertion des statuts
 INSERT INTO status (nom) VALUES

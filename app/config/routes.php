@@ -7,7 +7,6 @@ use flight\net\Router;
 //use Flight;
 
 
-
 $router->group('/alimentation', function() use ($router, $app) {
 	$alimentation_Controller = new alimentationController();
 	$router->get('/voirStock', [$alimentation_Controller, 'getStock']);

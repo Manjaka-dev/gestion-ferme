@@ -11,7 +11,6 @@ $TransactionController = new TransactionController();
 
 $router->get('/', [ $TransactionController, 'nouvelleVente' ]); 
 
-
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();
 	$router->get('/voirStock', [$alimentation_Controller, 'getStock']);
@@ -27,7 +26,6 @@ $router->group('/alimentation', function() use ($router) {
 	$router->get('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 	$router->post('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 });
-
 
 $router->group('/GestiionElevage', function() use ($router) {
 	$GestionElevage_Controller = new GestionElevageController();

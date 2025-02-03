@@ -1,34 +1,51 @@
-<div class="container content">
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ID Alimentation</th>
-                    <th>Quantité</th>
-                    <th>Prix Unitaire (€)</th>
-                    <th>Date d'Achat</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-    </div>
+<div class="page content">
+    <table>
+        <thead>
+            <tr>
+                <th>Alimentation</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire (€)</th>
+                <th>Date d'Achat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+            <tr>
+                <td>CAca</td>
+                <td>10</td>
+                <td>100 $</td>
+                <td>2020-12-12</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color:white;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f8f8f8;
-        }
-    </style>

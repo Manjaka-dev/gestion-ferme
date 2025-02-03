@@ -53,18 +53,19 @@ CREATE TABLE stock_alimentation (
   FOREIGN KEY (id_alimentation) REFERENCES alimentation(id)
 );
 
-CREATE TABLE animal_alimentation (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  id_animal INT NOT NULL,
-  date_alimentation DATE NOT NULL,
-  quantite INT DEFAULT 1,
-  FOREIGN KEY (id_animal) REFERENCES animal(id)
-);
 
 CREATE TABLE transaction_animal (
   id INT PRIMARY KEY AUTO_INCREMENT,
   id_animal INT NOT NULL,
   type TINYINT(1),
   date_transaction DATE,
+  FOREIGN KEY (id_animal) REFERENCES animal(id)
+);
+
+CREATE TABLE animal_alimentation (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_animal INT NOT NULL,
+  date_alimentation DATE NOT NULL,
+  quantite INT DEFAULT 1,
   FOREIGN KEY (id_animal) REFERENCES animal(id)
 );

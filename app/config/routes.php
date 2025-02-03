@@ -2,6 +2,7 @@
 
 use app\controllers\ApiExampleController;
 use app\controllers\alimentationController;
+use app\controllers\GestionElevageController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -23,3 +24,12 @@ $router->group('/alimentation', function() use ($router, $app) {
 	$router->post('/supprimerStock', [$alimentation_Controller, 'deleteStock']);
 });
 
+$router->group('/GestiionElevage', function() use ($router, $app) {
+	$GestionElevage_Controller = new GestionElevageController();
+	$router->get('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);
+	$router->post('/SituationElevage', [$GestionElevage_Controller, 'getSituationElevage']);
+	$router->get('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
+	$router->post('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
+});
+
+?>

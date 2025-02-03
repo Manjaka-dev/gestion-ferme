@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\AnimalModel;
+use app\models\CategorieModel;
 use Flight;
 
 class GestionAnimalController {
@@ -44,6 +45,31 @@ class GestionAnimalController {
             }
         }
         if ($count == count($ids)) {
+            Flight::redirect('/animal/choix');
+        } else {
+            Flight::redirect('/animal/choix');
+        }
+    }
+
+    public function getFormAjoutAnimal()  {
+        $categorie = new CategorieModel(Flight::db());
+
+        $categories = $categorie->getAll();
+
+        $data = [
+            'categories' => $categories
+        ];
+
+        Flight::render('formulaire-ajout-animal', $data);
+    }
+
+    public function insertAnimal()  {
+        $idCategorie = $_POST['id_categorie'];
+        $nom = $_POST['nom'];
+        $poid = $_POST['poid'];
+
+        $animal = new AnimalModel(Flight::db());
+        if ($animal->insertAnimal($nom, $idCategorie, $poid)) {
             Flight::redirect('/animal/choix');
         } else {
             Flight::redirect('/animal/choix');

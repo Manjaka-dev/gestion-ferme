@@ -71,3 +71,12 @@ CREATE TABLE transaction_animal (
   date_transaction DATE,
   FOREIGN KEY (id_animal) REFERENCES animal(id)
 );
+
+CREATE TABLE status_animal (
+  id_animal INT NOT NULL,
+  id_status INT NOT NULL,
+  date_status DATE,
+  PRIMARY KEY (id_animal, id_status),
+  FOREIGN KEY (id_animal) REFERENCES animal(id),
+  FOREIGN KEY (id_status) REFERENCES status(id)
+);

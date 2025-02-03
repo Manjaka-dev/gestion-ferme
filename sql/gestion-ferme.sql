@@ -24,6 +24,7 @@ CREATE TABLE animal (
   nom VARCHAR(255) NOT NULL,
   id_categorie INT NOT NULL,
   poid_de_base DECIMAL(10,2),
+  photo VARCHAR(255),
   FOREIGN KEY (id_categorie) REFERENCES categorie_animal(id)
 );
 

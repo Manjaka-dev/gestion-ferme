@@ -52,4 +52,24 @@ final class AnimalModel
         return $stmt->fetchAll();
     }
 
+    public function insertAnimal($nom, $idCategorie, $poid)  {
+        $querry = "INSERT INTO animal (id, nom, id_categorie, poid_de_base)
+        VALUES (
+            null,
+            :nom,
+            :id_categorie,
+            :poids
+          );";
+        $stmt = $this->db->prepare($querry);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':id_categorie', $idCategorie);
+        $stmt->bindParam(':poids', $poid);
+        $stmt->execute();
+        if ($stmt->rowCount() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -5,3 +5,4 @@ composer.lock
 .vagrant/
 runway
 .DS_Store
+local.session.sql

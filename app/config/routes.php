@@ -4,10 +4,9 @@ use app\controllers\ApiExampleController;
 use app\controllers\alimentationController;
 use flight\Engine;
 use flight\net\Router;
-//use Flight;
 
 
-$router->group('/alimentation', function() use ($router, $app) {
+$router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();
 	$router->get('/voirStock', [$alimentation_Controller, 'getStock']);
 	$router->post('/voirStock', [$alimentation_Controller, 'getStock']);

@@ -1,10 +1,15 @@
 <?php
 
 use app\controllers\ApiExampleController;
+use app\controllers\TransactionController;
 use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use flight\Engine;
 use flight\net\Router;
+
+$TransactionController = new TransactionController();
+
+$router->get('/', [ $TransactionController, 'nouvelleVente' ]); 
 
 
 $router->group('/alimentation', function() use ($router) {

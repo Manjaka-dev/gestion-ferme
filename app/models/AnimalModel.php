@@ -7,9 +7,9 @@ final class AnimalModel
 {
     private $db;
 
-    public function __construct()
+    public function __construct($db)
     {
-        $this->db = Flight::db();
+        $this->db = $db;
     }
 
     function getAnimalSpecificity($id)
@@ -22,4 +22,34 @@ final class AnimalModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    function nourirAnimal($id, $qtt)
+    {
+        $querry = "INSERT INTO animal_alimentation (id, id_animal, date_alimentation, quantite)
+        VALUES (
+            null,
+            :id_animal,
+            :date_alimentation,
+            :quantite
+          );";
+        $stmt = $this->db->prepare($querry);
+        $stmt->bindParam(':id_animal', $id);
+        $stmt->bindParam(':date_alimentation', date('Y-m-d H:i:s'));
+        $stmt->bindParam(':quantite', $qtt);
+        $stmt->execute();
+        if ($stmt->rowCount() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function getAll()  {
+        $querry = "SELECT * FROM animal";
+        $stmt = $this->db->prepare($querry);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

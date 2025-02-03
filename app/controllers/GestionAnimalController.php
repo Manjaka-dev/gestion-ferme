@@ -8,6 +8,19 @@ use Flight;
 
 class GestionAnimalController {
 
+    public function getAllAnimal()  {
+        $animal = new AnimalModel(Flight::db());
+
+        $animals = $animal->getAll();
+
+        $data = [
+            'animals' => $animals
+        ];
+
+        Flight::render('list-animal', $data); 
+        
+    }
+
     public function getAnimalSpec()  {
         $animal = new AnimalModel(Flight::db());
 
@@ -16,7 +29,7 @@ class GestionAnimalController {
         $data = [
             'animalSpec' => $animalSpec
         ];
-        Flight::render('dertail-animal', $data);
+        Flight::render('detail-animal', $data);
     }
 
     public function getFormulaireChoixanimal()  {

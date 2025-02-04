@@ -5,14 +5,17 @@ use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
 use app\controllers\FinanceController;
+use app\controllers\DeleteController;
 
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
 $FinanceContoller = new FinanceController();
+$Delete_Controller = new DeleteController();
 
 $router->get('/animals', [$GestionAnimalController,'getListAnimal']);
 $router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);
 $router->get('/venteAnimal', [$TransactionController, 'nouvelleVente']);
+$router->get('/reset', [$Delete_Controller, 'reset']);
 
 $alimentation_Controller = new alimentationController();
 $router->get('/restock', [$alimentation_Controller, 'getRestock']);

@@ -91,20 +91,20 @@ class GestionAnimalController {
     public function insertAnimal($id_categorie, $nom, $poids, $imgPath)  {
 
         $animal = new AnimalModel(Flight::db());
-        $animal->insertAnimal($nom, $idCategorie, $poids, $imgPath);
+        $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath);
     }
 	
     public function goToFormAnimal()
     {
         $catAnim = new CategorieAnimalModel(Flight::db());
         $categorie = $catAnim->getAll();
-        Flight::render('page',['view' => 'insert-animal','categorie' => $catAnim]);
+        Flight::render('page',['view' => 'insert-animal','categorie' => $categorie]);
     }
 
     public function insertAnimalWithPhoto() {
-        $dossier = 'assets/img/';
+        $dossier = 'assets/image/';
         if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
-            Flight::redirect('/admin-alert?message=Task failed to process: Upload failed');
+            Flight::redirect('/animals');
         }
     
         $fichier = basename($_FILES['file']['name']);
@@ -131,7 +131,7 @@ class GestionAnimalController {
     
         // Déplacer le fichier uploadé
         if (move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $fichier)) {
-            $imgPath = "assets/img/" . $fichier;
+            $imgPath = "assets/image/" . $fichier;
     
             // Insérer dans la base de données
             $this->insertAnimal($_POST["id_categorie"],$_POST["nom"],$_POST["poids"], $imgPath);

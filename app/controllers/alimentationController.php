@@ -74,7 +74,7 @@ class alimentationController {
     {
         $catAnim = new CategorieAnimalModel(Flight::db());
         $categorie = $catAnim->getAll();
-        Flight::render('page',['view' => 'insert-alim','categorie' => $catAnim]);
+        Flight::render('page',['view' => 'insert-alim','categorie' => $categorie]);
     }
 
     public function nouvelAlim()

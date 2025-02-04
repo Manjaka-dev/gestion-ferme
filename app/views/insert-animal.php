@@ -2,7 +2,7 @@
 
 </div>
 <div class="pop-up form rounded-lg">
-    <form action="">
+    <form action="ajoutAnimal" method="post" enctype="multipart/form-data">
         <div class="intitule">
             <h1>Insérer animal</h1>
         </div>
@@ -12,9 +12,8 @@
         </p>
         <p>
             <h3>Catégorie</h3>
-            <select name="categorie" id="">
+            <select name="id_categorie" id="">
                 <?php 
-                print_r($categorie);
                     foreach($categorie as $cat)
                     { 
                 ?> 
@@ -30,6 +29,15 @@
         </p>
         <p>
             <h3>Photo</h3>
+            <input type="file" name="file" class="browse">
+        </p>
+        <p>
+            <h3>Photo</h3>
+            <input type="file" name="file" class="browse">
+        </p>
+        <p>
+            <h3>Autovente: </h3>
+            <input type="checkbox" name="autovente">
         </p>
         <button class="validation-btn rounded-md">Valider</button>
     </form>

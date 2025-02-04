@@ -10,9 +10,6 @@
             <a href="venteAnimal">
                 <button class="next-btn black">Vendre</button>
             </a>
-            <a href="">
-                <button class="next-btn black">Nourrir</button>
-            </a>
         </div>
     </div>
 </div>

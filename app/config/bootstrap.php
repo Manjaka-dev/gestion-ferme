@@ -5,7 +5,9 @@
  * required services, plugins, connections, etc. are loaded and ready to go
  * for every request made to the application.
  */
-$ds = DIRECTORY_SEPARATOR;
+
+
+ $ds = DIRECTORY_SEPARATOR;
 require(__DIR__ . $ds . '..' . $ds . '..' . $ds . 'vendor' . $ds . 'autoload.php');
 if(file_exists(__DIR__. $ds . 'config.php') === false) {
 	Flight::halt(500, 'Config file not found. Please create a config.php file in the app/config directory to get started.');

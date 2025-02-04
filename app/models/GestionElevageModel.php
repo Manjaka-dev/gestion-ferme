@@ -19,6 +19,7 @@ class GestionElevageModel {
                 a.nom, 
                 ca.nom AS categorie, 
                 a.poid_de_base,
+                a.photo,
                 (SELECT sa.id_status 
                  FROM status_animal sa 
                  WHERE sa.id_animal = a.id AND sa.date_status <= ? 
@@ -78,18 +79,18 @@ class GestionElevageModel {
 
     // Obtenir les gains de l'élevage à une date donnée
     public function getGainsElevage($date) {
-        // Récupérer les gains de poids totaux des animaux
         $stmt = $this->db->prepare("
             SELECT 
                 SUM(al.pourcentage_gain * aa.quantite / 100) AS total_gains
             FROM animal_alimentation aa
-            JOIN categorie_alimentation caa ON aa.id_animal = a.id 
+            JOIN animal a ON aa.id_animal = a.id
+            JOIN categorie_alimentation caa ON a.id_categorie = caa.id_categorie_animal
             JOIN alimentation al ON caa.id_alimentation = al.id
             WHERE aa.date_alimentation <= ?
         ");
         $stmt->execute([$date]);
         return $stmt->fetch()['total_gains'];
-    }
+    }    
 
     // Obtenir une conclusion sur la rentabilité de l'élevage
     public function getConclusionElevage($date) {
@@ -121,6 +122,7 @@ class GestionElevageModel {
                 ca.nom AS categorie_animal,
                 ta.type AS transaction_type,
                 ta.date_transaction,
+                a.poid_de_base,
                 CASE
                     WHEN ta.type = 1 THEN ca.prix_de_vente  -- Si c'est une vente, le montant est le prix de vente
                     ELSE 0  -- Pour d'autres types de transaction, mettre le montant à 0 (ou autre logique si nécessaire)

@@ -66,19 +66,21 @@ final class AnimalModel
         return $stmt->fetchAll();
     }
 
-    public function insertAnimal($nom, $idCategorie, $poid)
+    public function insertAnimal($nom, $idCategorie, $poid, $imgPath)
     {
-        $querry = "INSERT INTO animal (id, nom, id_categorie, poid_de_base)
+        $querry = "INSERT INTO animal (id, nom, id_categorie, poid_de_base, photo)
         VALUES (
             null,
             :nom,
             :id_categorie,
-            :poids
+            :poids,
+            :photo
           );";
         $stmt = $this->db->prepare($querry);
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':id_categorie', $idCategorie);
         $stmt->bindParam(':poids', $poid);
+        $stmt->bindParam(':photo', $imgPath);
         $stmt->execute();
         if ($stmt->rowCount() == 1) {
             return true;

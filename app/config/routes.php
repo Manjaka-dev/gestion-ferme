@@ -21,6 +21,7 @@ $router->get('/insererCapital', [$FinanceContoller, 'insererCapital']);
 $router->get('/voirStock', [$alimentation_Controller, 'getStock']);
 $router->post('/acheterAlim', [$alimentation_Controller, 'insererAlim']);
 $router->get('/nouvelAlim', [$alimentation_Controller, 'goToFormAlim']);
+$router->get('/formAnimal', [$GestionAnimalController, 'goToFormAnimal']);
 
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();

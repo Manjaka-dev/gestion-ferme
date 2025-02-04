@@ -25,6 +25,8 @@ CREATE TABLE animal (
   id_categorie INT NOT NULL,
   poid_de_base DECIMAL(10,2),
   photo VARCHAR(255),
+  auto_vente TINYINT(1),
+  date_mise_en_vente date,
   FOREIGN KEY (id_categorie) REFERENCES categorie_animal(id)
 );
 
@@ -53,7 +55,6 @@ CREATE TABLE stock_alimentation (
   date_achat DATE,
   FOREIGN KEY (id_alimentation) REFERENCES alimentation(id)
 );
-
 
 CREATE TABLE transaction_animal (
   id INT PRIMARY KEY AUTO_INCREMENT,

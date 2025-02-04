@@ -20,36 +20,37 @@ INSERT INTO alimentation (nom, pourcentage_gain) VALUES
 INSERT INTO categorie_alimentation (id_categorie_animal, id_alimentation) VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6);
 
--- Insertion des animaux
-INSERT INTO animal (nom, id_categorie, poid_de_base, photo) VALUES
-('Poulet 1', 1, 2.00, 'poulet1.jpg'),
-('Poulet 2', 1, 2.50, 'poulet2.jpg'),
-('Vache 1', 2, 300.00, 'vache1.jpg'),
-('Mouton 1', 3, 40.00, 'mouton1.jpg'),
-('Mouton 2', 3, 45.00, 'mouton2.jpg'),
-('Chèvre 1', 4, 35.00, 'chevre1.jpg'),
-('Canard 1', 5, 3.00, 'canard1.jpg'),
-('Canard 2', 5, 2.80, 'canard2.jpg'),
-('Dinde 1', 6, 10.00, 'dinde1.jpg'),
-('Dinde 2', 6, 12.00, 'dinde2.jpg');
+-- Insertion des animaux avec `auto_vente` et `photo`
+INSERT INTO animal (nom, id_categorie, poid_de_base, photo, auto_vente, date_mise_en_vente) VALUES
+('Poulet 1', 1, 2.00, 'poulet1.jpg', 1, NULL),
+('Poulet 2', 1, 2.50, 'poulet2.jpg', 0, '2024-02-10'),
+('Vache 1', 2, 300.00, 'vache1.jpg', 1, NULL),
+('Mouton 1', 3, 40.00, 'mouton1.jpg', 0, '2024-04-20'),
+('Mouton 2', 3, 45.00, 'mouton2.jpg', 1, NULL),
+('Chèvre 1', 4, 35.00, 'chevre1.jpg', 0, '2024-06-30'),
+('Canard 1', 5, 3.00, 'canard1.jpg', 1, NULL),
+('Canard 2', 5, 2.80, 'canard2.jpg', 0, '2024-08-05'),
+('Dinde 1', 6, 10.00, 'dinde1.jpg', 1, NULL),
+('Dinde 2', 6, 12.00, 'dinde2.jpg', 0, '2024-10-20');
 
 -- Insertion des statuts
 INSERT INTO status (nom) VALUES
-('Ajout Animal'),
-('Bonne Santé');
+('Bonne Santé'),
+('Mort'),
+('Vendu');
 
--- Association des statuts aux animaux
+-- Association des statuts aux animaux (1 seul statut par animal)
 INSERT INTO status_animal (id_animal, id_status, date_status) VALUES
 (1, 1, '2024-01-05'),
-(2, 2, '2024-02-10'),
+(2, 1, '2024-02-10'),
 (3, 1, '2024-03-15'),
-(4, 2, '2024-04-20'),
+(4, 1, '2024-04-20'),
 (5, 1, '2024-05-25'),
-(6, 2, '2024-06-30'),
+(6, 1, '2024-06-30'),
 (7, 1, '2024-07-10'),
-(8, 2, '2024-08-05'),
+(8, 1, '2024-08-05'),
 (9, 1, '2024-09-15'),
-(10, 2, '2024-10-20');
+(10, 1, '2024-10-20');
 
 -- Insertion des stocks d'alimentation
 INSERT INTO stock_alimentation (id_alimentation, qtt, prix_unite, date_achat) VALUES
@@ -73,7 +74,7 @@ INSERT INTO animal_alimentation (id_animal, date_alimentation, quantite) VALUES
 (9, '2024-09-16', 1),
 (10, '2024-10-21', 1);
 
--- Insertion des transactions (0 = achat, 1 = vente)
+-- Insertion des transactions équilibrées (0 = achat, 1 = vente)
 INSERT INTO transaction_animal (id_animal, type, date_transaction) VALUES
 (1, 0, '2024-01-07'),
 (2, 1, '2024-02-12'),
@@ -86,5 +87,11 @@ INSERT INTO transaction_animal (id_animal, type, date_transaction) VALUES
 (9, 0, '2024-09-17'),
 (10, 1, '2024-10-22');
 
-INSERT INTO depot (montantDepot, dateDepot) 
-VALUES (1000.00, '2023-02-04');
+-- Insertion des dépôts pour stocker le capital de l'utilisateur
+INSERT INTO depot (montantDepot, dateDepot) VALUES
+(5000.00, '2024-01-01'),
+(2000.00, '2024-02-15'),
+(3500.00, '2024-03-10'),
+(4200.00, '2024-04-05'),
+(3100.00, '2024-05-20');
+

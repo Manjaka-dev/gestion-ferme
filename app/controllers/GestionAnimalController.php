@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\AnimalModel;
-use app\models\CategorieModel;
+use app\models\CategorieAnimalModel;
 use app\models\FinanceModel;
 
 use Flight;
@@ -15,17 +15,6 @@ class GestionAnimalController {
         $animalModel = new AnimalModel(Flight::db());
         $animals = $animalModel->getAll();
         Flight::render('page', ['view' => 'list-animal', 'animals' => $animals]);
-    }
-
-    function getAnimalSpecificity($id)
-    {
-        $querry = "SELECT * from animal AS a JOIN categorie_animal AS ca ON a.id_categorie = ca.id
-            JOIN categorie_alimentation AS cal ON ca.id = cal.id_categorie_animal
-            JOIN alimentation AS al ON cal.id_alimentation = al.id WHERE a.id = :id";
-        $stmt = $this->db->prepare($querry);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetchAll();
     }
 
 
@@ -48,10 +37,11 @@ class GestionAnimalController {
         $id = $_GET['idAnimal'];
         $animalSpec = $animal->getAnimalSpecificity($id);
         $data = [
-            'animalSpec' => $animalSpec
+            'animalSpec' => $animalSpec,
+            'view' => 'detail-animal'
         ];
 
-        Flight::render('page' ,['view' => 'detail-animal', $data]);
+        Flight::render('page' , $data);
     }
 
     public function getFormulaireChoixanimal()  {
@@ -87,7 +77,7 @@ class GestionAnimalController {
     }
 
     public function getFormAjoutAnimal()  {
-        $categorie = new CategorieModel(Flight::db());
+        $categorie = new CategorieAnimalModel(Flight::db());
 
         $categories = $categorie->getAll();
 
@@ -111,4 +101,8 @@ class GestionAnimalController {
         }
     }
 	
+    public function goToFormAnimal()
+    {
+
+    }
 }

@@ -79,4 +79,3 @@ class GestionElevageController {
         Flight::render('page', $data);
     }
 }
-?>

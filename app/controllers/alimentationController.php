@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use app\models\alimentationModel;
+use app\models\CategorieAnimalModel;
 
 use Flight;
 
@@ -22,6 +23,13 @@ class alimentationController {
         $stock = $alimModel->getStockByAlimentId();
         $alim = $alimModel->getMappedAlimentation();
         Flight::render('page', [ 'view' => 'list-stock', 'stock' => $stock ,'alim' => $alim]);
+    }
+
+    public function getRestock()
+    {
+        $alimModel = new alimentationModel(Flight::db());
+        $alim = $alimModel->getAllAlimentation();
+        Flight::render('page', [ 'view' => 'acheter-alim','alim' => $alim]);
     }
 
     // Ajouter un aliment au stock
@@ -53,5 +61,33 @@ class alimentationController {
         $data = Flight::request()->data;
         $success = $alimModel->acheterAlimentation($data->id_alimentation, $data->qtt, $data->prix_unite);
         Flight::render('achat', ['success' => $success]);
+    }
+
+    public function insererAlim()
+    {
+        $alimModel = new alimentationModel(Flight::db());
+        $alimModel->insererAlim($_POST["id_alimentation"], $_POST["qtt"], $_POST["date_achat"], $_POST["prix_unite"]);
+        Flight::redirect("voirStock");
+    }
+
+    public function goToFormAlim()
+    {
+        $catAnim = new CategorieAnimalModel(Flight::db());
+        $categorie = $catAnim->getAll();
+        Flight::render('page',['view' => 'insert-alim','categorie' => $catAnim]);
+    }
+
+    public function nouvelAlim()
+    {
+        $alimModel = new alimentationModel(Flight::db());
+        $alimModel->insererCategAlim($_POST["nom"], $_POST["pourcentage"]);
+        Flight::redirect("lierAlim");
+    }
+
+    public function lierAlimAnimal()
+    {
+        $alimModel = new alimentationModel(Flight::db());
+        $alimModel->lierAlimAnimal($_POST["id_alimentation"], $_POST["qtt"], $_POST["date_achat"], $_POST["prix_unite"]);
+        Flight::redirect("voirStock");
     }
 }

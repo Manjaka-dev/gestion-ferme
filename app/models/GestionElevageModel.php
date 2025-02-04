@@ -122,6 +122,7 @@ class GestionElevageModel {
                 ca.nom AS categorie_animal,
                 ta.type AS transaction_type,
                 ta.date_transaction,
+                a.poid_de_base,
                 CASE
                     WHEN ta.type = 1 THEN ca.prix_de_vente  -- Si c'est une vente, le montant est le prix de vente
                     ELSE 0  -- Pour d'autres types de transaction, mettre le montant à 0 (ou autre logique si nécessaire)

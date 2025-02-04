@@ -94,4 +94,3 @@ INSERT INTO depot (montantDepot, dateDepot) VALUES
 (3500.00, '2024-03-10'),
 (4200.00, '2024-04-05'),
 (3100.00, '2024-05-20');
-

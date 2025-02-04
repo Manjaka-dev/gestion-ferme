@@ -1,7 +1,8 @@
 <div class="page content">
     <body>
         <h1>Situation de l'Élevage au <span id="dateSelection"><?php echo htmlspecialchars($date); ?></span></h1>
-        
+        <a href="/GestionElevage/HistoriqueTransa"><button type="button">Historique de Transaction</button></a>
+        <a href="/voirStock"><button type="button">Retour</button></a>
         <!-- Saisie de la date -->
         <section>
             <label for="date">Sélectionnez une date :</label>

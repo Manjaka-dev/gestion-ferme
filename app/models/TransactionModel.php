@@ -5,7 +5,7 @@ class TransactionModel
 {
     private $db;
 
-    public function _construct($db) 
+    public function __construct($db) 
     {
         $this->db = $db;
     }
@@ -31,6 +31,13 @@ class TransactionModel
     //     FOREIGN KEY (id_animal) REFERENCES animal(id),
     //     FOREIGN KEY (id_status) REFERENCES status(id)
     //   );
+
+    public function getStock()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM stock_alimentation");
+        $stmt->execute([$id_alimentation]);
+        return $stmt->fetch();
+    }
 
     public function venteAnimal($id_animal, $date_transaction)
     {

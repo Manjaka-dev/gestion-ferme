@@ -16,7 +16,7 @@ class ApiExampleController {
 		// You could actually pull data from the database if you had one set up
 		// $users = $this->app->db()->fetchAll("SELECT * FROM users");
 		$users = [
-			[ 'id' => 1, 'name' => 'Bob Jones', 'email' => 'bob@example.com' ],
+			[ 'id' => 1, 'name' => 'Bob Jones', 'email' => 'bob@example.comXXXXX' ],
 			[ 'id' => 2, 'name' => 'Bob Smith', 'email' => 'bsmith@example.com' ],
 			[ 'id' => 3, 'name' => 'Suzy Johnson', 'email' => 'suzy@example.com' ],
 		];

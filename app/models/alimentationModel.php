@@ -20,10 +20,10 @@ class alimentationModel {
     }
 
     // Vérifier la quantité en stock pour un aliment spécifique
-    public function getStockByAlimentId($id_alimentation) {
-        $stmt = $this->db->prepare("SELECT qtt FROM stock_alimentation WHERE id_alimentation = ?");
-        $stmt->execute([$id_alimentation]);
-        return $stmt->fetch();
+    public function getStockByAlimentId() {
+        $stmt = $this->db->prepare("SELECT * FROM stock_alimentation");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     // Ajouter un nouvel aliment dans le stock
@@ -48,5 +48,19 @@ class alimentationModel {
     public function acheterAlimentation($id_alimentation, $qtt, $prix_unite) {
         $date_achat = date('Y-m-d');
         return $this->addStock($id_alimentation, $qtt, $prix_unite, $date_achat);
+    }
+
+    public function getMappedAlimentation()
+    {
+        $stmt = $this->db->prepare("SELECT id, nom FROM alimentation");
+        $stmt->execute();
+        $alim = array();
+        if($result = $stmt->fetchAll())
+        {
+            foreach ($result as $row) {
+                $alim[$row['id']] = $row['nom']; 
+            }
+        }
+        return $alim;
     }
 }

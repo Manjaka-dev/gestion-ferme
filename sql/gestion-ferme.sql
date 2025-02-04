@@ -70,3 +70,9 @@ CREATE TABLE animal_alimentation (
   quantite INT DEFAULT 1,
   FOREIGN KEY (id_animal) REFERENCES animal(id)
 );
+
+CREATE TABLE depot (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  montantDepot DECIMAL NOT NULL,
+  dateDepot DATE NOT NULL
+);

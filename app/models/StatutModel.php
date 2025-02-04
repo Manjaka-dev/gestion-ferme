@@ -5,7 +5,7 @@ class StatutModel
 {
     private $db;
 
-    public function _construct($db) 
+    public function __construct($db) 
     {
         $this->db = $db;
     }

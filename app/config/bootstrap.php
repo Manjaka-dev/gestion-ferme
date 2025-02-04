@@ -5,8 +5,7 @@
  * required services, plugins, connections, etc. are loaded and ready to go
  * for every request made to the application.
  */
-define('BASE_URL', '/gestion-ferme');
-define('BASE', '/gestion-ferme/public');
+
 
  $ds = DIRECTORY_SEPARATOR;
 require(__DIR__ . $ds . '..' . $ds . '..' . $ds . 'vendor' . $ds . 'autoload.php');

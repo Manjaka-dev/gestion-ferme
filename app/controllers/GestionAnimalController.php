@@ -106,16 +106,7 @@ class GestionAnimalController {
             $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath,$autovente,$quota,NULL);
             if($autovente == true)
             {
-                $stat = $this->db->prepare("SELECT id FROM animal ORDER BY ID DESC LIMIT 1");
-                $id = -1;
-                $stat->execute();
-                if($result = $stat->fetchAll())
-                {
-                    foreach($result as $row)
-                    {
-                        $id = $row["id"];
-                    }
-                }
+                $id = $animal->getLastId();
                 
                 if($id == -1)
                 {
@@ -132,8 +123,8 @@ class GestionAnimalController {
 
     public function updateDateVente()
     {
-        $stm = $this->db->prepare("UPDATE animal SET date_mise_en_vente = ".$_POST["date_vente"]." WHERE id = ".$_POST["idAnimal"]);
-        $stmt->execute();
+        $stm = Flight::db()->prepare("UPDATE animal SET date_mise_en_vente = ".$_POST["date_vente"]." WHERE id = ".$_POST["idAnimal"]);
+        $stm->execute();
         Flight::redirect("animals");
     }
 

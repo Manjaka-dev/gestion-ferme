@@ -65,26 +65,40 @@ final class AnimalModel
         return $stmt->fetchAll();
     }
 
-    public function insertAnimal($nom, $id_categorie, $poid,$imgPath, $autovente,$quota,$datevente)
+    public function insertAnimal($nom, $id_categorie, $poid, $imgPath, $autovente, $quota, $datevente)
     {
-        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente, date_mise_en_vente,quota_nourriture_journalier )
-        VALUES (
-            '".$nom."',
-            ".$id_categorie.",
-            ".$poid.",
-            '".$imgPath."',
-            ".$autovente.",
-            ".$quota.",
-            ".$datevente."
-          );";
-        $stmt = $this->db->prepare($querry);
-        $stmt->execute();
-        if ($stmt->rowCount() == 1) {
+        $query = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo, auto_vente, date_mise_en_vente, quota_nourriture_journalier)
+              VALUES (:nom, :id_categorie, :poid, :photo, :auto_vente, :date_mise_en_vente, :quota)";
+
+        $stmt = $this->db->prepare($query);
+
+        // Assurer que les décimales sont correctement formatées
+        $poid = floatval(str_replace(',', '.', $poid));
+        $quota = floatval(str_replace(',', '.', $quota));
+
+        // Exécuter la requête avec un tableau associatif
+        $result = $stmt->execute([
+            ':nom' => $nom,
+            ':id_categorie' => $id_categorie,
+            ':poid' => $poid,
+            ':photo' => $imgPath,
+            ':auto_vente' => $autovente,
+            ':date_mise_en_vente' => $datevente,
+            ':quota' => $quota
+        ]);
+
+        if ($result) {
             return true;
         } else {
+            print_r($stmt->errorInfo());  // Affiche l'erreur SQL détaillée
             return false;
         }
     }
+
+
+
+
+
 
     public function getPoidAnimal($id, $date)
     {
@@ -127,13 +141,11 @@ final class AnimalModel
 
     public function getPrixDeVente($poids, $id_categorie)
     {
-        $stmt = $this->db->prepare("SELECT prix_de_vente FROM categorie_animal WHERE id = ".$id_categorie);
+        $stmt = $this->db->prepare("SELECT prix_de_vente FROM categorie_animal WHERE id = " . $id_categorie);
         $stmt->execute();
         $prixDeVenteCateg = 100;
-        if($result = $stmt->fetchAll())
-        {
-            foreach($result as $row)
-            {
+        if ($result = $stmt->fetchAll()) {
+            foreach ($result as $row) {
                 $prixDeVenteCateg = $row["prix_de_vente"];
             }
         }
@@ -141,6 +153,17 @@ final class AnimalModel
         $prixDeVentefinal = $prixDeVenteCateg * $poids;
 
         return $prixDeVentefinal;
+    }
+
+    public function getLastId()
+    {
+        $stmt = $this->db->prepare("SELECT id FROM animal ORDER BY ID DESC LIMIT 1");
+        $stmt->execute();
+        if ($stmt->rowCount() == 1) {
+            return $stmt->fetch();
+        } else {
+            return -1;
+        }
     }
 
 }

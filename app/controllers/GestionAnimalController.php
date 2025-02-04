@@ -77,7 +77,7 @@ class GestionAnimalController {
     }
 
     public function getFormAjoutAnimal()  {
-        $categorie = new CategorieModel(Flight::db());
+        $categorie = new CategorieAnimalModel(Flight::db());
 
         $categories = $categorie->getAll();
 

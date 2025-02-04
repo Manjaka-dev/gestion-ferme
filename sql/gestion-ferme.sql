@@ -26,7 +26,8 @@ CREATE TABLE animal (
   poid_de_base DECIMAL(10,2),
   photo VARCHAR(255),
   auto_vente TINYINT(1),
-  date_mise_en_vente date,
+  date_mise_en_vente DATE,
+  quota_nourriture_journalier DECIMAL(10,2), 
   FOREIGN KEY (id_categorie) REFERENCES categorie_animal(id)
 );
 

@@ -8,13 +8,11 @@ use app\controllers\FinanceController;
 use app\controllers\CategorieAnimalController;
 use app\controllers\DeleteController;
 
-
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
 $FinanceContoller = new FinanceController();
 $CategorieAnimalController = new CategorieAnimalController();
 $Delete_Controller = new DeleteController();
-
 
 $router->get('/animals', [$GestionAnimalController,'getListAnimal']);
 $router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);

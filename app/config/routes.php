@@ -1,13 +1,9 @@
 <?php
 
-use app\controllers\ApiExampleController;
 use app\controllers\TransactionController;
 use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
-use app\controllers\FinanceController;
-use flight\Engine;
-use flight\net\Router;
 
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
@@ -48,3 +44,12 @@ $router->group('/GestiionElevage', function() use ($router) {
 	$router->get('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 	$router->post('/HistoriqueTransa', [$GestionElevage_Controller, 'getHistoriqueTransa']);
 });
+
+$router->group('/animal', function() use ($router) {
+	$gestionAnimalController = new GestionAnimalController();
+	$router->get('/choix', [$gestionAnimalController, 'getFormulaireChoixanimal']);
+	$router->post('/nourrir', [$gestionAnimalController, 'nourrirAnimal']);
+	$router->get('/detail', [$gestionAnimalController, 'getAnimalSpec']);
+	$router->get('/ajout', [$gestionAnimalController, 'getFormAjoutAnimal']);
+});
+

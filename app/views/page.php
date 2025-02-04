@@ -13,7 +13,7 @@
             <h1><i class="fa-solid fa-cow"></i> Ferme</h1>
         </div>
         <div class="navs">
-            <a class="navlink" href=""><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a class="navlink" href="GestionElevage/SituationElevage"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
             <a class="navlink" href="animals"><i class="fa-solid fa-cogs"></i> Gestion animal</a>
             <a class="navlink" href=""><i class="fa-solid fa-exchange-alt"></i> Transaction</a>
             <a class="navlink" href="voirStock"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>

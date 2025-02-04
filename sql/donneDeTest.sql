@@ -85,3 +85,6 @@ INSERT INTO transaction_animal (id_animal, type, date_transaction) VALUES
 (8, 1, '2024-08-07'),
 (9, 0, '2024-09-17'),
 (10, 1, '2024-10-22');
+
+INSERT INTO depot (montantDepot, dateDepot) 
+VALUES (1000.00, '2023-02-04');

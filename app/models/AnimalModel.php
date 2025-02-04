@@ -122,4 +122,22 @@ final class AnimalModel
         return $poid;
     }
 
+    public function getPrixDeVente($poids, $id_categorie)
+    {
+        $stmt = $this->db->prepare("SELECT prix_de_vente FROM categorie_animal WHERE id = ".$id_categorie);
+        $stmt->execute();
+        $prixDeVenteCateg = 100;
+        if($result = $stmt->fetchAll())
+        {
+            foreach($result as $row)
+            {
+                $prixDeVenteCateg = $row["prix_de_vente"];
+            }
+        }
+
+        $prixDeVentefinal = $prixDeVenteCateg * $poids;
+
+        return $prixDeVentefinal;
+    }
+
 }

@@ -91,9 +91,18 @@ class GestionAnimalController {
     public function insertAnimal($id_categorie, $nom, $poids, $imgPath)  {
 
         $animal = new AnimalModel(Flight::db());
-        $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath);
+        $fM = new FinanceModel(Flight::db());
+        $solde = $fM->getSolde(date("Y-m-d"));
+        $prix = $animal->getPrixDeVente($poids, $id_categorie);
+        if($solde < $prix)
+        {
+            Flight::redirect("animals");
+        } else {
+            $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath);
+            Flight::redirect("animals");
+        }
     }
-	
+
     public function goToFormAnimal()
     {
         $catAnim = new CategorieAnimalModel(Flight::db());

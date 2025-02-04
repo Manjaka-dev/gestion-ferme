@@ -47,4 +47,3 @@ class GestionElevageController {
         Flight::render('historique-transactions', $data);
     }
 }
-?>

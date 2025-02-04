@@ -74,3 +74,6 @@ INSERT INTO animal_alimentation (id_animal, date_alimentation) VALUES
 INSERT INTO transaction_animal (id_animal, type, date_transaction) VALUES
 (1, 1, '2024-02-01'),
 (2, 0, '2024-02-02');
+
+INSERT INTO depot (montantDepot, dateDepot) 
+VALUES (1000.00, '2023-02-04');

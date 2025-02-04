@@ -6,13 +6,21 @@ use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
 
 $TransactionController = new TransactionController();
+$GestionAnimalController = new GestionAnimalController();
 
-$router->get('/', [ $TransactionController, 'nouvelleVente' ]); 
+
+$router->get('/animals', [$GestionAnimalController,'getListAnimal']);
+$router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);
+$router->get('/venteAnimal', [$TransactionController, 'nouvelleVente']);
+
+$alimentation_Controller = new alimentationController();
+$router->get('/', [$alimentation_Controller, 'getStock']);
+$router->get('/voirStock', [$alimentation_Controller, 'getStock']);
+
 
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();
 	$router->get('/voirStock', [$alimentation_Controller, 'getStock']);
-	$router->post('/voirStock', [$alimentation_Controller, 'getStock']);
 	$router->get('/achatAlimentation', [$alimentation_Controller, 'acheterAlimentation']);
 	$router->post('/achatAlimentation', [$alimentation_Controller, 'acheterAlimentation']);
 	$router->get('/listeAlliments', [$alimentation_Controller, 'getAllAliments']);

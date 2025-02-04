@@ -55,7 +55,7 @@ Debugger::$strictMode = true; // display all errors
 // Debugger::$strictMode = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED; // all errors except deprecated notices
 if (Debugger::$showBar && php_sapi_name() !== 'cli') {
     $app->set('flight.content_length', false); // if Debugger bar is visible, then content-length can not be set by Flight
-	(new TracyExtensionLoader($app));
+	//(new TracyExtensionLoader($app));
 }
 
 /* 
@@ -70,9 +70,9 @@ return [
 	'database' => [
 		// uncomment the below 4 lines for mysql
 		// 'host' => 'localhost',
-		// 'dbname' => 'ferme',
-		// 'user' => 'root',
-		// 'password' => ''
+		// 'dbname' => 'dbname',
+		// 'user' => 'user',
+		// 'password' => 'password'
 
 		// uncomment the following line for sqlite
 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite'

@@ -62,6 +62,20 @@ class GestionElevageModel {
         return $stmt->fetch();
     }
 
+    public function getTotalAchat($date) {
+        $stmt = $this->db->prepare("  
+            SELECT SUM(ca.prix_de_vente) AS total_achats 
+            FROM transaction_animal ta
+            JOIN animal a ON ta.id_animal = a.id
+            JOIN categorie_animal ca ON a.id_categorie = ca.id
+            WHERE ta.type = 0 AND ta.date_transaction <= ?
+        ");
+        $stmt->execute([$date]);
+        
+        $result = $stmt->fetch();
+        return $result['total_achats'] ?? 0; // Retourne 0 si aucun achat trouvé
+    }
+
     // Obtenir les gains de l'élevage à une date donnée
     public function getGainsElevage($date) {
         // Récupérer les gains de poids totaux des animaux

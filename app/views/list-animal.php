@@ -13,7 +13,7 @@
                 {
             ?>
                 <div class="card rounded-md">
-                    <div class="slot rounded-md">
+                    <div class="slot rounded-md" style="background-image:url('<?= $anim["photo"] ?>')">
                     </div>
                     <div class="box flex space-between space-between">
                         <p><?= $anim["nom"] ?></p>

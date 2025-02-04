@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\AnimalModel;
 use app\models\CategorieAnimalModel;
 use app\models\FinanceModel;
+use app\models\StatutModel;
 
 use Flight;
 
@@ -99,26 +100,33 @@ class GestionAnimalController {
         $fM = new FinanceModel(Flight::db());
         $solde = $fM->getSolde(date("Y-m-d"));
         $prix = $animal->getPrixDeVente($poids, $id_categorie);
-        if($solde < $prix)
-        {
-            Flight::redirect("animals");
-        } else {
+        // if($solde < $prix)
+        // {
+        //     Flight::redirect("animals");
+        // } else {
             $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath,$autovente,$quota,NULL);
-            if($autovente == true)
-            {
-                $id = $animal->getLastId();
-                
-                if($id == -1)
+            // if($autovente == false)
+            // {
+            $statut = new StatutModel(Flight::db());
+            $stat = Flight::db()->prepare("SELECT id FROM animal ORDER BY ID DESC LIMIT 1");
+            $id = -1;
+            $stat->execute();
+            if($result = $stat->fetchAll())
                 {
-                    Flight::redirec("animals");
-                } else {
-                    Flight::redirect("insererVente?id=".$id);
+                    foreach($result as $row)
+                    {
+                        $id = $row["id"];
+                    }
                 }
-            } else 
-            {
-                Flight::redirect("animals");
-            }
-        }
+                $statut->nouveauStatut($id, 1,date("Y-m-d"));
+                
+                Flight::redirect("insererVente?id=".$id);
+                
+            // } else 
+            // {
+            //     Flight::redirect("animals");
+            // }
+        // }
     }
 
     public function updateDateVente()
@@ -167,11 +175,11 @@ class GestionAnimalController {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $fichier)) {
             $imgPath = "assets/image/" . $fichier;
     
-            $autovente = true;
+            $autovente = false;
 
             if(!isset($_POST["autovente"])) 
             {
-                $autovente = false;   
+                $autovente = true;   
             }
             $this->insertAnimal($_POST["id_categorie"],$_POST["nom"],$_POST["poids"], $imgPath, $autovente, $_POST["quota"]);
 

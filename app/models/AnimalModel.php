@@ -67,27 +67,18 @@ final class AnimalModel
 
     public function insertAnimal($nom, $id_categorie, $poid, $imgPath, $autovente, $quota, $datevente)
     {
-        $query = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo, auto_vente, date_mise_en_vente, quota_nourriture_journalier)
-              VALUES (:nom, :id_categorie, :poid, :photo, :auto_vente, :date_mise_en_vente, :quota)";
-
-        $stmt = $this->db->prepare($query);
-
-        // Assurer que les décimales sont correctement formatées
-        $poid = floatval(str_replace(',', '.', $poid));
-        $quota = floatval(str_replace(',', '.', $quota));
-
-        // Exécuter la requête avec un tableau associatif
-        $result = $stmt->execute([
-            ':nom' => $nom,
-            ':id_categorie' => $id_categorie,
-            ':poid' => $poid,
-            ':photo' => $imgPath,
-            ':auto_vente' => $autovente,
-            ':date_mise_en_vente' => $datevente,
-            ':quota' => $quota
-        ]);
-
-        if ($result) {
+        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente,quota_nourriture_journalier )
+        VALUES (
+            '".$nom."',
+            ".$id_categorie.",
+            ".$poid.",
+            '".$imgPath."',
+            ".$autovente.",
+            ".$quota."
+          )";
+        $stmt = $this->db->prepare($querry);
+        $stmt->execute();
+        if ($stmt->rowCount() == 1) {
             return true;
         } else {
             print_r($stmt->errorInfo());  // Affiche l'erreur SQL détaillée

@@ -142,7 +142,6 @@ i
     width: 100%;
     height: 70%;
     /* position: relative; */
-    background-color: rgb(48, 48, 48);
 }
 
 .box 
@@ -241,7 +240,6 @@ th {
 .slot {
     width: 100%;
     height: 50%;
-    background-color: rgb(200, 200, 200);
     display: flex;
     align-items: center;
     justify-content: center;

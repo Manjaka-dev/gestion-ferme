@@ -15,7 +15,7 @@ class StatutModel
         $sql = "INSERT INTO status_animal (id_animal, id_status, date_status) VALUES (
             ".$id_animal.",
             ".$id_status.",
-            ".$date_status.",
+            ".$date_status."
         )";
 
         $stmt = $this->db->prepare($sql);

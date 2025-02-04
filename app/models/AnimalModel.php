@@ -67,16 +67,15 @@ final class AnimalModel
 
     public function insertAnimal($nom, $id_categorie, $poid,$imgPath, $autovente,$quota,$datevente)
     {
-        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente, date_mise_en_vente,quota_nourriture_journalier )
+        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente,quota_nourriture_journalier )
         VALUES (
             '".$nom."',
             ".$id_categorie.",
             ".$poid.",
             '".$imgPath."',
             ".$autovente.",
-            ".$quota.",
-            ".$datevente."
-          );";
+            ".$quota."
+          )";
         $stmt = $this->db->prepare($querry);
         $stmt->execute();
         if ($stmt->rowCount() == 1) {

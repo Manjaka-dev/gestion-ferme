@@ -32,12 +32,7 @@
             <input type="file" name="file" class="browse">
         </p>
         <p>
-            <h3>Photo</h3>
-            <input type="file" name="file" class="browse">
-        </p>
-        <p>
-            <h3>Autovente: </h3>
-            <input type="checkbox" name="autovente">
+            <h3>Autovente: <input type="checkbox" name="autovente"></h3>
         </p>
         <button class="validation-btn rounded-md">Valider</button>
     </form>

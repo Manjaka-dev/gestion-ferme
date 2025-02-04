@@ -17,6 +17,7 @@
             <a class="navlink" href="animals"><i class="fa-solid fa-cogs"></i> Gestion animal</a>
             <a class="navlink" href=""><i class="fa-solid fa-exchange-alt"></i> Transaction</a>
             <a class="navlink" href="voirStock"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+            <a class="navlink" href="reset"><button type="button">Reset</button></a>
         </div>
     </div>
     <div class="container">

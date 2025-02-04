@@ -14,6 +14,7 @@
             <h3>Catégorie</h3>
             <select name="categorie" id="">
                 <?php 
+                print_r($categorie);
                     foreach($categorie as $cat)
                     { 
                 ?> 

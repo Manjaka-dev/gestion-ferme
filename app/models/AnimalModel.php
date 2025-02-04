@@ -19,7 +19,7 @@ final class AnimalModel
                 a.nom AS nom, 
                 ca.nom AS categorie, 
                 al.nom AS alimentation, 
-                s.nom AS statu 
+                s.nom AS statut 
               FROM animal AS a
               JOIN categorie_animal AS ca ON a.id_categorie = ca.id
               JOIN categorie_alimentation AS cal ON ca.id = cal.id_categorie_animal
@@ -29,11 +29,10 @@ final class AnimalModel
               WHERE a.id = :id";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $id, $this->db::PARAM_INT); // Sécurisation du paramètre
-        $stmt->execute();
-
-        return $stmt->fetch($this->db::FETCH_ASSOC); // Un seul résultat attendu
+        $stmt->execute([':id' => $id]);  // Passage direct du paramètre
+        return $stmt->fetch($this->db::FETCH_ASSOC);
     }
+
 
 
     function nourirAnimal($id, $qtt)

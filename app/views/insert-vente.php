@@ -1,20 +1,12 @@
 <div class="form rounded-lg">
-    <form action="">
+    <form action="insererDateVente">
         <div class="intitule">
-            <h1>Effectuer une vente</h1>
+            <h1>Entrer la date de mise en vente</h1>
         </div>
-        <p>
-            <h3>Animal: </h3>
-            <select name="animal" id="">
-                <option value="">Vache</option>
-                <option value="">...</option>
-                <option value="">...</option>
-            </select>
-        </p>
-        <input type="hidden" name="typeTransaction" value="">
+        <input type="hidden" value="<?= $idAnimal ?>">
         <p>
             <h3>Date: </h3>
-            <input type="date" name="dateTransaction">
+            <input type="date" name="dateVente">
         </p>
         <button class="validation-btn rounded-md">Valider</button>
     </form>

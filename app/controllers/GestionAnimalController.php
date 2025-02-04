@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\AnimalModel;
-use app\models\CategorieModel;
+use app\models\CategorieAnimalModel;
 use app\models\FinanceModel;
 
 use Flight;
@@ -37,10 +37,11 @@ class GestionAnimalController {
         $id = $_GET['idAnimal'];
         $animalSpec = $animal->getAnimalSpecificity($id);
         $data = [
-            'animalSpec' => $animalSpec
+            'animalSpec' => $animalSpec,
+            'view' => 'detail-animal'
         ];
 
-        Flight::render('page' ,['view' => 'detail-animal', $data]);
+        Flight::render('page' , $data);
     }
 
     public function getFormulaireChoixanimal()  {
@@ -76,7 +77,7 @@ class GestionAnimalController {
     }
 
     public function getFormAjoutAnimal()  {
-        $categorie = new CategorieModel(Flight::db());
+        $categorie = new CategorieAnimalModel(Flight::db());
 
         $categories = $categorie->getAll();
 
@@ -100,4 +101,8 @@ class GestionAnimalController {
         }
     }
 	
+    public function goToFormAnimal()
+    {
+
+    }
 }

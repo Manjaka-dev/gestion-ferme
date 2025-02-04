@@ -14,9 +14,12 @@ final class AnimalModel
 
     function getAnimalSpecificity($id)
     {
-        $querry = "SELECT * from animal AS a JOIN categorie_animal AS ca ON a.id_categorie = ca.id
+        $querry = "SELECT a.nom as nom, ca.nom as categorie, al.nom as alimentation, s.nom as statu from animal AS a JOIN categorie_animal AS ca ON a.id_categorie = ca.id
             JOIN categorie_alimentation AS cal ON ca.id = cal.id_categorie_animal
-            JOIN alimentation AS al ON cal.id_alimentation = al.id WHERE a.id = :id";
+            JOIN alimentation AS al ON cal.id_alimentation = al.id
+            JOIN status_animal AS sa ON a.id = sa.id_animal
+            JOIN status AS s ON sa.id_status = s.id
+            WHERE a.id = :id";
         $stmt = $this->db->prepare($querry);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -45,14 +48,16 @@ final class AnimalModel
 
     }
 
-    public function getAll()  {
+    public function getAll()
+    {
         $querry = "SELECT * FROM animal";
         $stmt = $this->db->prepare($querry);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function insertAnimal($nom, $idCategorie, $poid)  {
+    public function insertAnimal($nom, $idCategorie, $poid)
+    {
         $querry = "INSERT INTO animal (id, nom, id_categorie, poid_de_base)
         VALUES (
             null,

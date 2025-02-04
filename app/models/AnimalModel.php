@@ -15,17 +15,26 @@ final class AnimalModel
 
     function getAnimalSpecificity($id)
     {
-        $querry = "SELECT a.nom as nom, ca.nom as categorie, al.nom as alimentation, s.nom as statu from animal AS a JOIN categorie_animal AS ca ON a.id_categorie = ca.id
-            JOIN categorie_alimentation AS cal ON ca.id = cal.id_categorie_animal
-            JOIN alimentation AS al ON cal.id_alimentation = al.id
-            JOIN status_animal AS sa ON a.id = sa.id_animal
-            JOIN status AS s ON sa.id_status = s.id
-            WHERE a.id = :id";
-        $stmt = $this->db->prepare($querry);
-        $stmt->bindParam(':id', $id);
+        $query = "SELECT 
+                a.nom AS nom, 
+                ca.nom AS categorie, 
+                al.nom AS alimentation, 
+                s.nom AS statu 
+              FROM animal AS a
+              JOIN categorie_animal AS ca ON a.id_categorie = ca.id
+              JOIN categorie_alimentation AS cal ON ca.id = cal.id_categorie_animal
+              JOIN alimentation AS al ON cal.id_alimentation = al.id
+              JOIN status_animal AS sa ON a.id = sa.id_animal
+              JOIN status AS s ON sa.id_status = s.id
+              WHERE a.id = :id";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, $this->db::PARAM_INT); // Sécurisation du paramètre
         $stmt->execute();
-        return $stmt->fetchAll();
+
+        return $stmt->fetch($this->db::FETCH_ASSOC); // Un seul résultat attendu
     }
+
 
     function nourirAnimal($id, $qtt)
     {
@@ -78,7 +87,8 @@ final class AnimalModel
         }
     }
 
-    public function getPoidAnimal($id, $date)  {
+    public function getPoidAnimal($id, $date)
+    {
         $querry = "SELECT SUM(quantite) as quantite from animal_alimentation WHERE date_alimentation < :date_alim AND id_animal = 1";
         $stmt = $this->db->prepare($querry);
         $stmt->bindParam(':id', $id);
@@ -111,7 +121,7 @@ final class AnimalModel
 
         $duree = $debut->diff($fin)->days;
 
-        $poid = $animal['poidBase'] + ($animal['poidBase']*$animal['gain']*$jour_nourir*0.01) - ($animal['poidBase']*$animal['perte']*$duree*0.01);
+        $poid = $animal['poidBase'] + ($animal['poidBase'] * $animal['gain'] * $jour_nourir * 0.01) - ($animal['poidBase'] * $animal['perte'] * $duree * 0.01);
 
         return $poid;
     }

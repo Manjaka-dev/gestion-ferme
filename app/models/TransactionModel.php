@@ -32,12 +32,12 @@ class TransactionModel
     //     FOREIGN KEY (id_status) REFERENCES status(id)
     //   );
 
-    public function getStock()
-    {
-        $stmt = $this->db->prepare("SELECT * FROM stock_alimentation");
-        $stmt->execute([$id_alimentation]);
-        return $stmt->fetch();
-    }
+    // public function getStock()
+    // {
+    //     $stmt = $this->db->prepare("SELECT * FROM stock_alimentation");
+    //     $stmt->execute([$id_alimentation]);
+    //     return $stmt->fetch();
+    // }
 
     public function venteAnimal($id_animal, $date_transaction)
     {

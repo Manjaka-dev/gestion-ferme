@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS animal;
 DROP TABLE IF EXISTS status;
 DROP TABLE IF EXISTS categorie_animal;
 DROP TABLE IF EXISTS alimentation;
+DROP TABLE IF EXISTS depot;
 
 -- Réactiver les vérifications des contraintes de clés étrangères
 SET FOREIGN_KEY_CHECKS = 1;

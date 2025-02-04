@@ -54,7 +54,6 @@ CREATE TABLE stock_alimentation (
   FOREIGN KEY (id_alimentation) REFERENCES alimentation(id)
 );
 
-
 CREATE TABLE transaction_animal (
   id INT PRIMARY KEY AUTO_INCREMENT,
   id_animal INT NOT NULL,

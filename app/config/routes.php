@@ -5,11 +5,13 @@ use app\controllers\TransactionController;
 use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
+use app\controllers\FinanceController;
 use flight\Engine;
 use flight\net\Router;
 
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
+$FinanceContoller = new FinanceController();
 
 
 $router->get('/animals', [$GestionAnimalController,'getListAnimal']);
@@ -17,9 +19,12 @@ $router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);
 $router->get('/venteAnimal', [$TransactionController, 'nouvelleVente']);
 
 $alimentation_Controller = new alimentationController();
-$router->get('/', [$alimentation_Controller, 'getStock']);
+$router->get('/restock', [$alimentation_Controller, 'getRestock']);
+$router->get('/', [$FinanceContoller, 'home']);
+$router->get('/insererCapital', [$FinanceContoller, 'insererCapital']);
 $router->get('/voirStock', [$alimentation_Controller, 'getStock']);
-
+$router->post('/acheterAlim', [$alimentation_Controller, 'insererAlim']);
+$router->get('/nouvelAlim', [$alimentation_Controller, 'goToFormAlim']);
 
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();

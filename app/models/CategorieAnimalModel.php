@@ -1,9 +1,9 @@
 <?php
-namespace App\Models;
+namespace app\Models;
 
 use Flight;
 
-final class CategorieModel {
+final class CategorieAnimalModel {
     private $db;
 
     public function __construct($db)
@@ -13,7 +13,7 @@ final class CategorieModel {
 
     public function getAll()
     {
-        $query = "SELECT * FROM categorie";
+        $query = "SELECT * FROM categorie_animal";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();

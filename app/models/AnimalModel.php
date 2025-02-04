@@ -71,5 +71,4 @@ final class AnimalModel
             return false;
         }
     }
-
 }

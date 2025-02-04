@@ -1,7 +1,7 @@
 <div class="page content">
     <div class="menu">
         <div class="left">
-            <a href=""><i class="fa-solid fa-plus"></i> Acheter un animal</a>
+            <a href="formAnimal"><i class="fa-solid fa-plus"></i> Acheter un animal</a>
             <a href=""><i class="fa-solid fa-pig"></i> Ajouter une catégorie d'animal</a>
         </div>
     </div>

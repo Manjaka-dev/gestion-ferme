@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\AnimalModel;
-use app\models\CategorieModel;
+use app\models\CategorieAnimalModel;
 use app\models\FinanceModel;
 
 use Flight;
@@ -101,4 +101,8 @@ class GestionAnimalController {
         }
     }
 	
+    public function goToFormAnimal()
+    {
+
+    }
 }

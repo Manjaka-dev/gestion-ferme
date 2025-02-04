@@ -4,11 +4,11 @@ use app\controllers\TransactionController;
 use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
+use app\controllers\FinanceController;
 
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
 $FinanceContoller = new FinanceController();
-
 
 $router->get('/animals', [$GestionAnimalController,'getListAnimal']);
 $router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);

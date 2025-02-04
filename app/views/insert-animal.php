@@ -34,6 +34,10 @@
         <p>
             <h3>Autovente: <input type="checkbox" name="autovente"></h3>
         </p>
+        <p>
+            <h3>Quota:</h3>
+            <input type="number" name="quota">
+        </p>
         <button class="validation-btn rounded-md">Valider</button>
     </form>
 </div>

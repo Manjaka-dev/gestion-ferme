@@ -29,6 +29,8 @@ $router->post('/insererCateg', [$CategorieAnimalController, 'insertCateg']);
 $router->get('/listCateg', [$CategorieAnimalController, 'goToListCateg']);
 $router->post('/modifierCateg', [$CategorieAnimalController, 'updateCateg']);
 $router->post('/ajoutAnimal', [$GestionAnimalController, 'insertAnimalWithPhoto']);
+$router->post('/insererVente', [$GestionAnimalController, 'goToDateVente']);
+$router->post('/ajouterVente', [$GestionAnimalController, 'updateDateVente']);
 
 
 $router->group('/alimentation', function() use ($router) {

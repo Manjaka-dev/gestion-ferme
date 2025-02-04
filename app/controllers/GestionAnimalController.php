@@ -17,6 +17,11 @@ class GestionAnimalController {
         Flight::render('page', ['view' => 'list-animal', 'animals' => $animals]);
     }
 
+    public function goToDateVente()
+    {
+        Flight::render('page', ['view' => 'insert-vente', 'idAnimal' => $_GET["id"]]);
+    }
+
 
     public function getAllAnimal()  {
         $animal = new AnimalModel(Flight::db());
@@ -88,7 +93,7 @@ class GestionAnimalController {
         Flight::render('formulaire-ajout-animal', $data);
     }
 
-    public function insertAnimal($id_categorie, $nom, $poids, $imgPath)  {
+    public function insertAnimal($id_categorie, $nom, $poids, $imgPath, $autovente,$quota)  {
 
         $animal = new AnimalModel(Flight::db());
         $fM = new FinanceModel(Flight::db());
@@ -98,9 +103,38 @@ class GestionAnimalController {
         {
             Flight::redirect("animals");
         } else {
-            $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath);
-            Flight::redirect("animals");
+            $animal->insertAnimal($nom, $id_categorie, $poids, $imgPath,$autovente,$quota,NULL);
+            if($autovente == true)
+            {
+                $stat = $this->db->prepare("SELECT id FROM animal ORDER BY ID DESC LIMIT 1");
+                $id = -1;
+                $stat->execute();
+                if($result = $stat->fetchAll())
+                {
+                    foreach($result as $row)
+                    {
+                        $id = $row["id"];
+                    }
+                }
+                
+                if($id == -1)
+                {
+                    Flight::redirec("animals");
+                } else {
+                    Flight::redirect("insererVente?id=".$id);
+                }
+            } else 
+            {
+                Flight::redirect("animals");
+            }
         }
+    }
+
+    public function updateDateVente()
+    {
+        $stm = $this->db->prepare("UPDATE animal SET date_mise_en_vente = ".$_POST["date_vente"]." WHERE id = ".$_POST["idAnimal"]);
+        $stmt->execute();
+        Flight::redirect("animals");
     }
 
     public function goToFormAnimal()
@@ -142,10 +176,13 @@ class GestionAnimalController {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $fichier)) {
             $imgPath = "assets/image/" . $fichier;
     
-            // Insérer dans la base de données
-            $this->insertAnimal($_POST["id_categorie"],$_POST["nom"],$_POST["poids"], $imgPath);
+            $autovente = true;
 
-            Flight::redirect('animals');
+            if(!isset($_POST["autovente"])) 
+            {
+                $autovente = false;   
+            }
+            $this->insertAnimal($_POST["id_categorie"],$_POST["nom"],$_POST["poids"], $imgPath, $autovente, $_POST["quota"]);
 
         } else {
             // Flight::redirect('/admin-alert?message=Task failed to process: Upload failed');
@@ -153,3 +190,4 @@ class GestionAnimalController {
     }
 
 }
+

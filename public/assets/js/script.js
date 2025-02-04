@@ -10,3 +10,5 @@ leftBtn.addEventListener('click', () => {
     carousel.style.transform = 'translateX(-200px)';
 });
 
+
+

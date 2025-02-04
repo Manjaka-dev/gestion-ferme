@@ -65,14 +65,17 @@ final class AnimalModel
         return $stmt->fetchAll();
     }
 
-    public function insertAnimal($nom, $id_categorie, $poid, $imgPath)
+    public function insertAnimal($nom, $id_categorie, $poid,$imgPath, $autovente,$quota,$datevente)
     {
-        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo)
+        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente, date_mise_en_vente,quota_nourriture_journalier )
         VALUES (
             '".$nom."',
             ".$id_categorie.",
             ".$poid.",
-            '".$imgPath."'
+            '".$imgPath."',
+            ".$autovente.",
+            ".$quota.",
+            ".$datevente."
           );";
         $stmt = $this->db->prepare($querry);
         $stmt->execute();

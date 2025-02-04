@@ -65,19 +65,18 @@ final class AnimalModel
         return $stmt->fetchAll();
     }
 
-    public function insertAnimal($nom, $idCategorie, $poid)
+    public function insertAnimal($nom, $id_categorie, $poid,$imgPath, $autovente,$quota,$datevente)
     {
-        $querry = "INSERT INTO animal (id, nom, id_categorie, poid_de_base)
+        $querry = "INSERT INTO animal (nom, id_categorie, poid_de_base, photo,auto_vente,quota_nourriture_journalier )
         VALUES (
-            null,
-            :nom,
-            :id_categorie,
-            :poids
-          );";
+            '".$nom."',
+            ".$id_categorie.",
+            ".$poid.",
+            '".$imgPath."',
+            ".$autovente.",
+            ".$quota."
+          )";
         $stmt = $this->db->prepare($querry);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':id_categorie', $idCategorie);
-        $stmt->bindParam(':poids', $poid);
         $stmt->execute();
         if ($stmt->rowCount() == 1) {
             return true;
@@ -123,6 +122,24 @@ final class AnimalModel
         $poid = $animal['poidBase'] + ($animal['poidBase'] * $animal['gain'] * $jour_nourir * 0.01) - ($animal['poidBase'] * $animal['perte'] * $duree * 0.01);
 
         return $poid;
+    }
+
+    public function getPrixDeVente($poids, $id_categorie)
+    {
+        $stmt = $this->db->prepare("SELECT prix_de_vente FROM categorie_animal WHERE id = ".$id_categorie);
+        $stmt->execute();
+        $prixDeVenteCateg = 100;
+        if($result = $stmt->fetchAll())
+        {
+            foreach($result as $row)
+            {
+                $prixDeVenteCateg = $row["prix_de_vente"];
+            }
+        }
+
+        $prixDeVentefinal = $prixDeVenteCateg * $poids;
+
+        return $prixDeVentefinal;
     }
 
 }

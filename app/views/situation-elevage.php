@@ -1,5 +1,4 @@
 <div class="page content">
-    <body>
         <h1>Situation de l'Élevage au <span id="dateSelection"><?php echo htmlspecialchars($date); ?></span></h1>
         <a href="/GestionElevage/HistoriqueTransa"><button type="button">Historique de Transaction</button></a>
         <a href="/voirStock"><button type="button">Retour</button></a>
@@ -51,12 +50,10 @@
             <h2>Conclusion</h2>
             <p id="conclusion"></p> <!-- À mettre à jour par JavaScript -->
         </section>
-    </body>
 </div>
-
 <script>
-    // Fonction pour charger les données de l'élevage en fonction de la date
-    document.getElementById("situationBtn").addEventListener("click", function() {
+     // Fonction pour charger les données de l'élevage en fonction de la date
+     document.getElementById("situationBtn").addEventListener("click", function() {
     var date = document.getElementById("date").value;
     var xhr = new XMLHttpRequest();
     

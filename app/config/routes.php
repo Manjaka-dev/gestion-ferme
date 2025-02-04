@@ -5,12 +5,16 @@ use app\controllers\alimentationController;
 use app\controllers\GestionElevageController;
 use app\controllers\GestionAnimalController;
 use app\controllers\FinanceController;
+use app\controllers\CategorieAnimalController;
 use app\controllers\DeleteController;
+
 
 $TransactionController = new TransactionController();
 $GestionAnimalController = new GestionAnimalController();
 $FinanceContoller = new FinanceController();
+$CategorieAnimalController = new CategorieAnimalController();
 $Delete_Controller = new DeleteController();
+
 
 $router->get('/animals', [$GestionAnimalController,'getListAnimal']);
 $router->get('/details', [$GestionAnimalController, 'getAnimalSpec']);
@@ -24,6 +28,15 @@ $router->get('/insererCapital', [$FinanceContoller, 'insererCapital']);
 $router->get('/voirStock', [$alimentation_Controller, 'getStock']);
 $router->post('/acheterAlim', [$alimentation_Controller, 'insererAlim']);
 $router->get('/nouvelAlim', [$alimentation_Controller, 'goToFormAlim']);
+$router->get('/formAnimal', [$GestionAnimalController, 'goToFormAnimal']);
+$router->get('/ajoutCategAnimal', [$CategorieAnimalController, 'goToCateg']);
+$router->post('/insererCateg', [$CategorieAnimalController, 'insertCateg']);
+$router->get('/listCateg', [$CategorieAnimalController, 'goToListCateg']);
+$router->post('/modifierCateg', [$CategorieAnimalController, 'updateCateg']);
+$router->post('/ajoutAnimal', [$GestionAnimalController, 'insertAnimalWithPhoto']);
+$router->get('/insererVente', [$GestionAnimalController, 'goToDateVente']);
+$router->post('/insererDateVente', [$GestionAnimalController, 'updateDateVente']);
+
 
 $router->group('/alimentation', function() use ($router) {
 	$alimentation_Controller = new alimentationController();
